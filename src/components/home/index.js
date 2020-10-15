@@ -1,28 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import Header from './header';
-import Content from './content';
+const Home = ({ data }) => {
+  const { name, phone } = data;
 
-class Home extends Component {
-  constructor() {
-    super();
-
-    // Initial State
-    this.state = {
-      title: 'Counter',
-    };
-  }
-
-  render() {
-    const { title } = this.state;
-
-    return (
-      <div>
-        <Header title={title} />
-        <Content />
-      </div>
-    );
-  }
-}
+  return (
+    <li>
+      <span>{`name : ${name} | `}</span>
+      <span>{`phone : ${phone}`}</span>
+    </li>
+  );
+};
 
 export default Home;
