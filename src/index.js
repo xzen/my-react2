@@ -24,6 +24,7 @@ class App extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);
     this.onKeyPress = this.onKeyPress.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
   componentDidMount() {
@@ -64,6 +65,14 @@ class App extends React.Component {
     });
   }
 
+  onDelete(id) {
+    const { data } = this.state;
+
+    this.setState({
+      data: data.filter((item) => item.id !== id),
+    });
+  }
+
   addTask() {
     const { data, inputText } = this.state;
     const id = String(data.length + 1);
@@ -97,7 +106,14 @@ class App extends React.Component {
         <Grid item xs={2}>
           <Button variant="contained" color="primary" onClick={this.onClick}>Add</Button>
         </Grid>
-        {data.map((item) => <Item key={item.id} item={item} onChecked={this.onChecked} />)}
+        {data.map((item) => (
+          <Item
+            key={item.id}
+            item={item}
+            onChecked={this.onChecked}
+            onDelete={this.onDelete}
+          />
+        ))}
       </Grid>
     );
   }

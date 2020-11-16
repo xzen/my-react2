@@ -3,6 +3,7 @@ import {
   Grid,
   FormControlLabel,
   Checkbox,
+  Button,
 } from '@material-ui/core';
 
 import './index.scss';
@@ -11,9 +12,10 @@ class Item extends React.Component {
   constructor(props) {
     super(props);
 
-    const { onChecked } = this.props;
+    const { onChecked, onDelete } = this.props;
 
     this.onChecked = onChecked;
+    this.onDelete = onDelete;
   }
 
   render() {
@@ -23,9 +25,12 @@ class Item extends React.Component {
     return (
       <Grid container item xs={12}>
         <FormControlLabel
-          control={<Checkbox checked={checked} onClick={() => this.onChecked(id)} />}
+          control={
+            <Checkbox checked={checked} onClick={() => this.onChecked(id)} />
+          }
           label={label}
         />
+        <Button color="secondary" onClick={() => this.onDelete(id)}>Delete</Button>
       </Grid>
     );
   }
