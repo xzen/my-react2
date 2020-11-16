@@ -5,7 +5,7 @@ const data = [{
 }, {
   id: '2',
   label: 'Manger',
-  checked: true,
+  checked: false,
 }, {
   id: '3',
   label: 'Travailler',

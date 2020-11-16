@@ -23,10 +23,7 @@ class Item extends React.Component {
     return (
       <Grid container item xs={12}>
         <FormControlLabel
-          control={<Checkbox 
-              checked={checked}
-              onClick={() => this.onChecked(id)} 
-          />}
+          control={<Checkbox checked={checked} onClick={() => this.onChecked(id)} />}
           label={label}
         />
       </Grid>

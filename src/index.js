@@ -16,6 +16,8 @@ class App extends React.Component {
     this.state = {
       data: [],
     };
+
+    this.onChecked = this.onChecked.bind(this);
   }
 
   componentDidMount() {
@@ -25,8 +27,19 @@ class App extends React.Component {
   }
 
   onChecked(id) {
-    console.log(this.state);
-    console.log(id);
+    const { data } = this.state;
+
+    this.setState({
+      data: data.map((item) => {
+        const updateItem = item;
+
+        if (item.id === id) {
+          updateItem.checked = !updateItem.checked;
+        }
+
+        return updateItem;
+      }),
+    });
   }
 
   render() {
@@ -34,11 +47,7 @@ class App extends React.Component {
 
     return (
       <Grid container spacing={1}>
-        {data.map((item) => <Item 
-          key={item.id}
-          item={item}
-          onChecked={this.onChecked}
-        />)}
+        {data.map((item) => <Item key={item.id} item={item} onChecked={this.onChecked} />)}
       </Grid>
     );
   }
