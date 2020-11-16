@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
@@ -6,7 +7,6 @@ import {
   Button,
 } from '@material-ui/core';
 
-import intialState from './initial-state';
 import Item from './components/item';
 
 import './index.scss';
@@ -28,8 +28,24 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      data: intialState,
+    axios.get('https://opendata.paris.fr/api/records/1.0/search/', {
+      params: {
+        dataset: 'que-faire-a-paris-',
+        q: 'yoga',
+      },
+    }).then((response) => {
+      const { data } = response;
+      const dataUpdated = data.records.map((event) => ({
+        id: event.fields.id,
+        label: event.fields.title,
+        checked: false,
+      }));
+
+      this.setState({
+        data: dataUpdated,
+      });
+    }).catch((error) => {
+      console.log(error);
     });
   }
 
