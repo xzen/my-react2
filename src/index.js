@@ -24,12 +24,21 @@ class App extends React.Component {
     });
   }
 
+  onChecked(id) {
+    console.log(this.state);
+    console.log(id);
+  }
+
   render() {
     const { data } = this.state;
 
     return (
       <Grid container spacing={1}>
-        {data.map((item) => <Item item={item} />)}
+        {data.map((item) => <Item 
+          key={item.id}
+          item={item}
+          onChecked={this.onChecked}
+        />)}
       </Grid>
     );
   }
