@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   Grid,
+  TextField,
+  Button,
 } from '@material-ui/core';
 
 import intialState from './initial-state';
@@ -15,15 +17,35 @@ class App extends React.Component {
 
     this.state = {
       data: [],
+      inputText: '',
     };
 
     this.onChecked = this.onChecked.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onClick = this.onClick.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
   }
 
   componentDidMount() {
     this.setState({
       data: intialState,
     });
+  }
+
+  onChange(e) {
+    this.setState({
+      inputText: e.target.value,
+    });
+  }
+
+  onClick() {
+    this.addTask();
+  }
+
+  onKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.addTask();
+    }
   }
 
   onChecked(id) {
@@ -42,11 +64,39 @@ class App extends React.Component {
     });
   }
 
+  addTask() {
+    const { data, inputText } = this.state;
+    const id = String(data.length + 1);
+
+    data.push({
+      id,
+      label: inputText,
+      checked: false,
+    });
+
+    this.setState({
+      data,
+      inputText: '',
+    });
+  }
+
   render() {
-    const { data } = this.state;
+    const { data, inputText } = this.state;
 
     return (
       <Grid container spacing={1}>
+        <Grid item xs={3}>
+          <TextField
+            fullWidth
+            label="Add task"
+            onChange={this.onChange}
+            onKeyPress={this.onKeyPress}
+            value={inputText}
+          />
+        </Grid>
+        <Grid item xs={2}>
+          <Button variant="contained" color="primary" onClick={this.onClick}>Add</Button>
+        </Grid>
         {data.map((item) => <Item key={item.id} item={item} onChecked={this.onChecked} />)}
       </Grid>
     );
