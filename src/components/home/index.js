@@ -3,13 +3,11 @@ import {
   Grid
 } from '@material-ui/core';
 
-import InputAdd from './input-add';
-import Tasks from './tasks';
+import Search from './search';
 
 const Home = () => (
   <Grid container spacing={1}>
-    <InputAdd />
-    <Tasks />
+    <Search />
   </Grid>
 );
 

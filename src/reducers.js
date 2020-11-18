@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux';
 
-import tasks from './components/home/tasks/reducer';
-import inputAdd from './components/home/input-add/reducer';
+import search from './components/home/search/reducer';
 
 export default combineReducers({
-  tasks,
-  inputAdd
+  search
 });
