@@ -1,6 +1,6 @@
 import { actionsType } from './actions';
 
-const initalState = {
+const initialState = {
   resultsSearch: [],
   data: [{
     id: '1',
@@ -39,7 +39,7 @@ const productSearch = (state, action) => {
 
 const productShow = (state) => (state);
 
-const data = (state = initalState, action) => {
+const data = (state = initialState, action) => {
   switch (action.type) {
     case actionsType.PRODUCT_SEARCH:
       return productSearch(state, action);

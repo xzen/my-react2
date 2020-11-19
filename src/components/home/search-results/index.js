@@ -5,6 +5,9 @@ import {
   Grid
 } from '@material-ui/core';
 
+import { addProductCaddy } from '../../caddy/actions';
+import store from '../../../store';
+
 const Product = ({ product }) => {
   const {
     name,
@@ -16,9 +19,9 @@ const Product = ({ product }) => {
   return (
     <Grid container>
       <Grid xs={2}>
-        <img src={img} alt={name} />
+        <img style={{ width: 50 }} src={img} alt={name} />
       </Grid>
-      <Grid xs={5}>
+      <Grid xs={4}>
         <span>{name}</span>
       </Grid>
       <Grid xs={2}>
@@ -30,6 +33,11 @@ const Product = ({ product }) => {
       <Grid container xs={1}>
         <Button variant="contained" color="primary" size="small" fullWidth>
           Voir
+        </Button>
+      </Grid>
+      <Grid container xs={1}>
+        <Button onClick={() => store.dispatch(addProductCaddy(product))} variant="contained" color="secondary" size="small" fullWidth>
+          Add Caddy
         </Button>
       </Grid>
     </Grid>
