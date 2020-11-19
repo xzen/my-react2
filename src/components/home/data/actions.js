@@ -8,6 +8,7 @@ export const productShow = (id) => ({
   id
 });
 
-export const productSearch = () => ({
-  type: actionsType.PRODUCT_SEARCH
+export const productSearch = (wordSearch) => ({
+  type: actionsType.PRODUCT_SEARCH,
+  wordSearch
 });
