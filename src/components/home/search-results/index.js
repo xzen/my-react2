@@ -44,15 +44,18 @@ const CountProduct = ({ count }) => (
   </Grid>
 );
 
-const SearchResults = ({ resultsSearch }) => (
+const SearchResults = ({ results }) => (
   <Grid container>
-    <CountProduct count={resultsSearch.length} />
-    {resultsSearch.map((product) => (<Product product={product} />))}
+    <CountProduct count={results.length} />
+    {results.map((product) => (<Product product={product} />))}
   </Grid>
 );
 
-const mapToProps = (state) => ({
-  resultsSearch: state.data.resultsSearch
-});
+const mapToProps = (state) => {
+  const { data, resultsSearch } = state.data;
+  const results = resultsSearch.length ? resultsSearch : data;
+
+  return ({ results });
+};
 
 export default connect(mapToProps)(SearchResults);
