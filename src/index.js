@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import Routes from './routes';
+import store from './store';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.scss';
 
 const App = () => (
-  <div>
-    <h1>Hello Wolrd</h1>
-  </div>
+  <Provider store={store}>
+    <Routes />
+  </Provider>
 );
 
 ReactDOM.render(<App />, document.getElementById('app'));
